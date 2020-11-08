@@ -135,7 +135,7 @@ function StartPlaySong(player, cd_player)
 
 	local sound_song = ICDP_DISCS[disc_num].tracks[num_track][1] --получаем название текущего трека
 
-	sound_sv = getSoundManager():PlaySound(sound_song,false,10);
+	sound_sv = getSoundManager():PlaySound(sound_song,false,5);
 	counterX = 0
 
 end
