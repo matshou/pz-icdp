@@ -44,7 +44,7 @@ function ResetVolumeLevels(modData)
 	getCore():setOptionAmbientVolume(modData.CurrentAmbientVolume);
 end
 
-function SetMusicLevels(sound, music, ambient)
+function SetVolumeLevels(sound, music, ambient)
 
 	getSoundManager():setSoundVolume(sound);
 	getSoundManager():setMusicVolume(music);
@@ -81,7 +81,7 @@ function CheckCDPlayerOn(item, player) --- проверка наличия в и
 
 			if item:getType() == "ICDPCDplayerOn" and item:getUsedDelta() > 0.01 then --- если дельты плеера достаточно (есть заряд в батарейке)
 
-				SetMusicLevels(0, 0.2, 0.1);
+				SetVolumeLevels(0, 0.2, 0.1);
 
 				if item:hasModData() == false then
 					player:getInventory():Remove(item);
