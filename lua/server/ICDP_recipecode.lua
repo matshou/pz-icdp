@@ -303,7 +303,9 @@ function recipe_Play_CD_Player(items, result, player)
 	cd_player = result
 
 	local ICDPCharacterData = player:getModData()
-	ICDPCharacterData.CurrentVolume = getCore():getOptionMusicVolume();
+	ICDPCharacterData.CurrentSoundVolume = getCore():getOptionSoundVolume();
+	ICDPCharacterData.CurrentMusicVolume = getCore():getOptionMusicVolume();
+	ICDPCharacterData.CurrentAmbientVolume = getCore():getOptionAmbientVolume();
 
 	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 	ICDPCDplayerData.DiscName = disc_name; --получаем имя диска в плеере
@@ -343,10 +345,7 @@ function recipe_Stop_CD_Player(items, result)
         return --если каким-то чудом всё еще нет ссылки, то выходим из функции, но это симптом бага в другом месте
 	end
 
-	local ICDPCharacterData = player:getModData() --- получаем ссылку на персонажа
-	local CurrentVolume = ICDPCharacterData.CurrentVolume; -- получаем текущее значение ванильной громкости фоновой музыки
-
-	getCore():setOptionMusicVolume(CurrentVolume); --- устанавливаем полученную громкость
+	ResetVolumeLevels(player:getModData());
 
 	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 	local disc_name = ICDPCDplayerData.DiscName; --получаем имя диска в плеере
