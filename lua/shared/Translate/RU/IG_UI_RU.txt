@@ -1,0 +1,27 @@
+
+IGUI_RU = {
+
+IGUI_Loaded = "Loaded: ",
+IGUI_No_CD = "No CD",
+IGUI_No_Cover = "Нет обложки...",
+IGUI_ContextMenu_InspectCDBox = "Осмотреть коробку",
+IGUI_Track = "Track: ",
+IGUI_Unknown = " Unknown",
+IGUI_CD_Player_On = "Проигрыватель Вкл.",
+IGUI_ICDP_CD_Player = "Проигрыватель",
+IGUI_CD_Player_With_Disc = "Проигрыватель с диском",
+IGUI_ContextMenu_Insert_ICDP_Disc = "Вставить диск в проигрыватель",
+IGUI_ContextMenu_Put_CD_in_CD-Box = "Поместить диск в коробку",
+IGUI_No_suitable_CD_box = "Нет подходящей коробки",
+IGUI_ContextMenu_CD = "Осмотреть диск",
+IGUI_ContextMenu_Next_Track = "След. трек >>|",
+IGUI_ContextMenu_Previous_Track = "|<< Пред. трек",
+IGUI_ContextMenu_Cant_Action = "Переместите в основной инвентарь... и повторите правый клик...",
+IGUI_Battery_Power_Off = "== Battery Power Off ==",
+IGUI_Battery_Low = "== Battery Low ==",
+IGUI_CD_is_damaged = "== Play error ==",
+IGUI_There_is_a_CD_inside = "Внутри есть компакт-диск",
+IGUI_CD-box_no_description = "Не описания диска",
+IGUI_CDBox_Window = " ",
+IGUI_ICDP_CD_Player_Off = "Проигрыватель Выкл.",
+}

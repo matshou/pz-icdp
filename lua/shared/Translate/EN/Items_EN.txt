@@ -1,0 +1,13 @@
+/************************ICDP************************/	
+
+Items_EN = {
+
+	DisplayName_ICDP_CD_Player = "CD Player",
+	DisplayName_CD_Player_With_Disc = "CD Player with disc",
+	DisplayName_CD_Player_On = "CD Player On",
+	DisplayName_CD_Box_Empty = "CD-Box Empty",
+	DisplayName_CD_Box = "CD-Box",
+	DisplayName_CD_Disc = "CD-Disc",
+	DisplayName_CD = "CD",
+
+}

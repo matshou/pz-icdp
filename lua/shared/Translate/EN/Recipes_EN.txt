@@ -1,0 +1,16 @@
+/************************ICDP************************/
+
+Items_EN = {
+
+Recipe_Insert_Battery_into_Vanilla_CD_Player = "Insert Battery",
+Recipe_Insert_Battery_into_ICDP_CD_Player = "Insert Battery",
+Recipe_Insert_Battery_into_ICDP_CD_Player_With_Disc = "Insert Battery",
+Recipe_Remove_Battery_from_ICDP_CD_Player = "Remove Battery",
+Recipe_Remove_Battery_from_ICDP_CD_Player_with_Disc = "Remove Battery",
+Recipe_Remove_the_CD_from_ICDP_CD_Player = "Eject Disc",
+Recipe_Remove_CD_from_CD-Box = "Remove CD from CD-Box",
+Recipe_Play_CD_Player = "Play",
+Recipe_Stop_CD_Player = "Stop",
+
+
+}

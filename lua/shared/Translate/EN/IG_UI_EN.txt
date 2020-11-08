@@ -1,0 +1,29 @@
+--- Immersive CD Player ---
+
+IGUI_EN = {
+
+IGUI_Loaded = "Loaded: ",
+IGUI_No_CD = "No CD",
+IGUI_No_Cover = "No Cover",
+IGUI_ContextMenu_InspectCDBox = "Inspect CD-box",
+IGUI_Track = "Track: ",
+IGUI_Unknown = " Unknown",
+IGUI_CD_Player_On = "CD Player On",
+IGUI_ICDP_CD_Player = "CD Player",
+IGUI_CD_Player_With_Disc = "CD Player with Disc",
+IGUI_ContextMenu_Insert_ICDP_Disc = "Insert CD-Disc into CD player",
+IGUI_ContextMenu_Put_CD_in_CD-Box = "Put CD-Disc in CD-box",
+IGUI_No_suitable_CD_box = "No suitable CD-box",
+IGUI_ContextMenu_CD = "Inspect CD-Disc",
+IGUI_ContextMenu_Next_Track = "Next track >>|",
+IGUI_ContextMenu_Previous_Track = "|<< Prev.track",
+IGUI_ContextMenu_Cant_Action = "For action - move to the main inventory ... And right click again ...",
+IGUI_Battery_Power_Off = "== Battery Power Off ==",
+IGUI_Battery_Low = "== Battery Low ==",
+IGUI_CD_is_damaged = "== Play error ==",
+IGUI_There_is_a_CD_inside = "There is a CD inside",
+IGUI_CD-box_no_description = "CD-box - no description",
+IGUI_CDBox_Window = " ",
+IGUI_ICDP_CD_Player_Off = "CD Player Off",
+
+}

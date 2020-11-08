@@ -1,0 +1,12 @@
+
+Items_RU = {
+
+	DisplayName_ICDP_CD_Player = "CD-Проигрыватель",
+	DisplayName_CD_Player_With_Disc = "Проигрыватель с диском",
+	DisplayName_CD_Player_On = "Проигрыватель Вкл.",
+	DisplayName_CD_Box_Empty = "Пустая коробка",
+	DisplayName_CD_Box = "Коробка с компакт-диском",
+	DisplayName_CD_Disc = "Компакт-диск",
+	DisplayName_CD = "Компакт-диск",
+
+}

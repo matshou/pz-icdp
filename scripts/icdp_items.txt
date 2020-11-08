@@ -1,0 +1,192 @@
+
+module Base
+{
+    item Disc
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD,
+        Icon				=			ICDPCDBoxFull,
+        Weight				=			0.02,
+    }
+}
+
+
+module ICDP
+{
+	imports
+	{
+		Base
+	}
+
+
+/************************ CD Disc ************************/
+
+	item ICDPCDBoxFull
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Box,
+        Icon				=			ICDPCDBoxFull,
+        Weight				=			0.074,
+    }
+
+	item ICDPCDBoxEmpty
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Box Empty,
+        Icon				=			ICDPCDBoxEmpty,
+        Weight				=			0.054,
+    }
+
+    item ICDPCDDisc1
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			Scratched,
+    }
+
+    item ICDPCDDisc2
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			Euro Dance hits,
+    }
+
+    item ICDPCDDisc3
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			Euro Dance hits,
+    }
+
+    item ICDPCDDisc4
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			Snoop Doggy Dogg - Doggystyle,
+    }
+
+    item ICDPCDDisc5
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			Metallica - Metallica,
+    }
+	
+	item ICDPCDDisc6
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			The Rock - Hits vol.,
+    }
+	
+	item ICDPCDDisc7
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			2Pac - Strictly 4 My N.I.G.G.A.Z.,
+    }
+	
+	item ICDPCDDisc8
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			Nirvana - In Utero,
+    }
+	
+	item ICDPCDDisc9
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			AC/DC - Back In Black,
+    }
+	
+	item ICDPCDDisc10
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			Metallica - Master Of Puppets,
+    }
+	
+	item ICDPCDDisc11
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			Iron Maiden - Fear of the Dark,
+    }
+	
+	item ICDPCDDisc12
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			Korn - Korn,
+    }
+	
+	item ICDPCDDisc13
+    {
+        Type				=			Normal,
+        DisplayName			=		    CD Disc,
+        Icon				=			ICDPCDDisc,
+        Weight				=			0.02,
+		Tooltip				=			The Rock - Hits vo2.,
+    }
+
+/************************ Device ************************/
+	
+item ICDPCDplayer
+    {
+		Type			= Drainable,
+		UseDelta		=	0.0,
+        Weight			= 0.3,
+        DisplayName		= ICDP CD Player,
+		ActivatedItem	=	NO,
+		cantBeConsolided	= TRUE,
+        icon			= ICDPCDplayer,
+	}
+
+item ICDPCDplayerWithDisc
+    {
+		Type			= Drainable,
+		UseDelta		=	0.0,
+        Weight			= 0.32,
+        DisplayName		= CD Player With Disc,
+		ActivatedItem	=	NO,
+		cantBeConsolided	= TRUE,
+        icon			= ICDPCDplayerWithDisc,
+	}
+
+item ICDPCDplayerOn
+    {
+		Type			= Drainable,
+		UseDelta		=	0.0,
+        Weight			= 0.32,
+        DisplayName		= CD Player On,
+		ActivatedItem	=	NO,
+		DisappearOnUse	=	FALSE,
+		cantBeConsolided	= TRUE,
+        icon			= ICDPCDplayerOn,
+	}
+}

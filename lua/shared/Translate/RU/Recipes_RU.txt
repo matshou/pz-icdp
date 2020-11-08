@@ -1,0 +1,15 @@
+
+Items_RU = {
+
+Recipe_Insert_Battery_into_Vanilla_CD_Player = "Вставить батарейку",
+Recipe_Insert_Battery_into_ICDP_CD_Player = "Вставить батарейку",
+Recipe_Insert_Battery_into_ICDP_CD_Player_With_Disc = "Вставить батарейку",
+Recipe_Remove_Battery_from_ICDP_CD_Player = "Извлечь батарейку",
+Recipe_Remove_Battery_from_ICDP_CD_Player_with_Disc = "Извлечь батарейку",
+Recipe_Remove_the_CD_from_ICDP_CD_Player = "Извлечь диск",
+Recipe_Remove_CD_from_CD-Box = "Извлечь диск из коробки",
+Recipe_Play_CD_Player = "Воспроизведение",
+Recipe_Stop_CD_Player = "Стоп",
+
+
+}

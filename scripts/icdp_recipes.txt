@@ -1,0 +1,115 @@
+module ICDP
+{
+	imports
+	{
+		Base
+	}
+	
+/*************RECIPES*******************/
+
+recipe Insert Battery into Vanilla CD Player
+	{
+		destroy Battery,
+		destroy CDplayer,
+		Result:ICDPCDplayer,
+		Time:30.0,
+	   	Category:Device,
+		NeedToBeLearn:false,
+		CanBeDoneFromFloor:false,
+		OnCreate:recipe_Insert_Battery_Into_Vanilla_CD_Player,
+	}
+
+recipe Insert Battery into ICDP CD Player
+	{
+		destroy ICDPCDplayer,
+		destroy Battery,
+		Result:ICDPCDplayer,
+		Time:30.0,
+	   	Category:Device,
+		NeedToBeLearn:false,
+		CanBeDoneFromFloor:false,
+		OnTest:recipe_Insert_Battery_Into_ICDP_CD_Player_TestIsValid,
+		OnCreate:recipe_Insert_Battery_Into_ICDP_CD_Player,
+	}
+
+recipe Insert Battery into ICDP CD Player With Disc
+	{
+		destroy ICDPCDplayerWithDisc,
+		destroy Battery,
+		Result:ICDPCDplayerWithDisc,
+		Time:30.0,
+	   	Category:Device,
+		NeedToBeLearn:false,
+		CanBeDoneFromFloor:false,
+		OnTest:recipe_Insert_Battery_Into_ICDP_CD_Player_WithDiscTestIsValid,
+		OnCreate:recipe_Insert_Battery_Into_ICDP_CD_Player_WithDisc,
+	}	
+	
+recipe Remove Battery from ICDP CD Player
+	{
+		destroy ICDPCDplayer,
+		Result:Battery,
+		Time:30.0,
+	   	Category:Device,
+		NeedToBeLearn:false,
+		OnTest:recipe_ICDPCDPlayerBatteryRemoval_TestIsValid,
+		OnCreate:recipe_ICDPCDPlayerBatteryRemoval_OnCreate,
+	}	
+
+recipe Remove Battery from ICDP CD Player with Disc
+	{
+		keep ICDPCDplayerWithDisc,
+		Result:Battery,
+		Time:30.0,
+	   	Category:Device,
+		NeedToBeLearn:false,
+		CanBeDoneFromFloor:false,
+		OnTest:recipe_ICDPCDPlayerBatteryRemoval_TestIsValid,
+		OnCreate:recipe_ICDPCDPlayerWithDiscBatteryRemoval_OnCreate,
+	}
+
+recipe Remove the CD from ICDP CD Player
+	{
+		destroy ICDPCDplayerWithDisc,
+		Result:ICDPCDplayer,
+		Time:30.0,
+	   	Category:Device,
+		NeedToBeLearn:false,
+		CanBeDoneFromFloor:false,
+		OnCreate:recipe_Remove_CD_From_ICDP_CDPlayer,
+	}
+
+recipe Remove CD from CD-Box
+	{
+		destroy ICDPCDBoxFull,
+		Result:ICDPCDBoxEmpty,
+		Time:30.0,
+	   	Category:Device,
+		NeedToBeLearn:false,
+		CanBeDoneFromFloor:false,
+		OnCreate:recipe_Remove_CD_from_box,
+	}
+	
+recipe Play CD Player
+	{
+		destroy ICDPCDplayerWithDisc,
+		Result:ICDPCDplayerOn,
+		Time:15.0,
+	   	Category:Device,
+		NeedToBeLearn:false,
+		CanBeDoneFromFloor:false,
+		OnTest:recipe_Play_CD_Player_TestIsValid,
+		OnCreate:recipe_Play_CD_Player,
+	}
+	
+recipe Stop CD Player
+	{
+		destroy ICDPCDplayerOn,
+		Result:ICDPCDplayerWithDisc,
+		Time:15.0,
+	   	Category:Device,
+		NeedToBeLearn:false,
+		CanBeDoneFromFloor:false,
+		OnCreate:recipe_Stop_CD_Player,
+	}
+}
