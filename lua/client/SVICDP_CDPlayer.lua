@@ -81,7 +81,7 @@ function CheckCDPlayerOn(item, player) --- проверка наличия в и
 
 			if item:getType() == "ICDPCDplayerOn" and item:getUsedDelta() > 0.01 then --- если дельты плеера достаточно (есть заряд в батарейке)
 
-				SetVolumeLevels(0, 0.2, 0.1);
+				SetVolumeLevels(0, 0.1, 0.05);
 
 				if item:hasModData() == false then
 					player:getInventory():Remove(item);
