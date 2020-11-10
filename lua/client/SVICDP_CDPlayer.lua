@@ -37,6 +37,18 @@ Events.OnTick.Add(function()
 	end
 end)
 
+function getPlayerCDPlayer(player)
+
+	for i = 0, player:getInventory():getItems():size() - 1 do
+		local item = player:getInventory():getItems():get(i);
+
+		if item:getType() == "ICDPCDplayerOn" then
+			return item;
+		end
+	end
+	return nil;
+end
+
 function ResetVolumeLevels(modData)
 
 	getCore():setOptionSoundVolume(modData.CurrentSoundVolume);
