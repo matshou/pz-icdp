@@ -7,7 +7,8 @@ function ICDPKeysUp(keynum)
 		return
 	end
 
-	if player:getInventory():FindAll("ICDPCDplayerOn") ~= 0 then
+	local cdp_count = player:getInventory():FindAll("ICDPCDplayerOn");
+	if cdp_count and cdp_count:size() > 0 then
 
 		if keynum == 201 then -- PageUp
 
