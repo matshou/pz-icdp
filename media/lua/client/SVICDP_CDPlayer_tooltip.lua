@@ -30,7 +30,7 @@ function ISToolTipInv:render()
 			if self.item:getType() == "ICDPCDplayerOn" or self.item:getType() == "ICDPCDplayerWithDisc" or self.item:getType() == "ICDPCDplayer" then
 				local device_name = self.item:getType();
 
-				if device_name and self.item:hasModData() == false then
+				if device_name and not isDebugEnabled() and self.item:hasModData() == false then
 					getPlayer():getInventory():Remove(device_name)
 					getPlayer():Say("Item Removed - ANTI Cheat!!!")
 				return end

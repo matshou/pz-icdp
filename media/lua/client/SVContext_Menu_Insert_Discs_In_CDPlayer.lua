@@ -77,10 +77,11 @@ function AltInsertICDPCDDiscIntoICDPCDplayer(player, disc_name, disc_data, item)
 
 	local ICDPCDDiscData = disc_data:getModData(); --таблица диска
 
-	if ICDPCDDiscData.AlbumTitle == nil then
-	player:getInventory():Remove(disc_name)
-	player:Say("ANTI Cheat!!! CD removed")
-	return end
+	if ICDPCDDiscData.AlbumTitle == nil and not isDebugEnabled() then
+		player:getInventory():Remove(disc_name)
+		player:Say("ANTI Cheat!!! CD removed")
+		return
+	end
 
 	for i = 0, player:getInventory():getItems():size() - 1 do
 		local item = player:getInventory():getItems():get(i);

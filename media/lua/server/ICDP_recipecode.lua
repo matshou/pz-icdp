@@ -253,7 +253,7 @@ function recipe_Remove_CD_from_box(items, result, player) -- [result] = CD-BoxEm
 
 	if disc_name ~= nil then
 		getPlayer():getInventory():AddItem("ICDP." .. (disc_name)) --- добавляем диск
-		elseif disc_name == nil then
+		elseif disc_name == nil and not isDebugEnabled() then
 			player:Say("ANTI Cheat!!!")
 		return
 	end
