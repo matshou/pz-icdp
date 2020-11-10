@@ -65,12 +65,15 @@ function AltInsertICDPCDDiscIntoVanillaCDplayer(player, disc_name, disc_data, it
 	ICDPCDplayerData.NumTrack = 1; --- номер стартового трека по умолчанию после установки диска в плеер
 	ICDPCDplayerData.Power = false; -- записываем в плеер текущее наличие/отсутствие энергии
 	ICDPCDplayerData.EntropyDisc = entropy_disc;
+	ICDPCDplayerData.Volume = 0.5;
+
 end
 
 --- Вставить ICDP диск в ICDP CDPlayer ---
 function AltInsertICDPCDDiscIntoICDPCDplayer(player, disc_name, disc_data, item)
 	local cd_player_delta
     local cd_player
+	local cdplayer_volume
 
 	local ICDPCDDiscData = disc_data:getModData(); --таблица диска
 
@@ -83,6 +86,9 @@ function AltInsertICDPCDDiscIntoICDPCDplayer(player, disc_name, disc_data, item)
 		local item = player:getInventory():getItems():get(i);
 		if item:getType() == "ICDPCDplayer" then -- находим ICDP CD плеер без диска
 			cd_player_delta = item:getUsedDelta() --сохраняем дельту перед удалением ICDP плеера без диска
+			cd_player = item -- сохраняем cd плеер
+			local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
+			cdplayer_volume = ICDPCDplayerData.Volume;
 			player:getInventory():Remove("ICDPCDplayer") --удаляем ICDP плеер без диска
 			break
 		end
@@ -127,6 +133,7 @@ function AltInsertICDPCDDiscIntoICDPCDplayer(player, disc_name, disc_data, item)
 	ICDPCDplayerData.NumTrack = 1; --- номер стартового трека по умолчанию после установки диска в плеер
 	ICDPCDplayerData.Power = power; -- записываем в плеер текущее наличие/отсутствие энергии
 	ICDPCDplayerData.EntropyDisc = entropy_disc;
+	ICDPCDplayerData.Volume = cdplayer_volume;
 end
 
 --Действие контекстного меню ICDP диска

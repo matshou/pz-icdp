@@ -130,12 +130,14 @@ function StartPlaySong(player, cd_player)
 	local num_track = ICDPCDplayerData.NumTrack; --- номер текущего трека воспроизведения
 	local entropy_disc = ICDPCDplayerData.EntropyDisc; --- изношенность диска
 	local content_disc = ICDPCDplayerData.ContentDisc;
-
+	local cdplayer_volume = ICDPCDplayerData.Volume;
 	local disc_num = num
-
 	local sound_song = ICDP_DISCS[disc_num].tracks[num_track][1] --получаем название текущего трека
-
-	sound_sv = getSoundManager():PlaySound(sound_song,false,5);
+	local sound = sound_song
+	local gameSound = GameSounds.getSound(sound)
+	local volume = gameSound:getUserVolume()
+	gameSound:setUserVolume(cdplayer_volume)
+	sound_sv = getSoundManager():PlaySound(sound_song,false,cdplayer_volume);
 	counterX = 0
 
 end
@@ -143,9 +145,9 @@ end
 function SongTime(item, player, cd_player)
 
 	local disc_data = cd_player
+	local player = getSpecificPlayer(0)
 
 	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
-	local player = getSpecificPlayer(0)
 	local disc_name = ICDPCDplayerData.DiscName; --получаем имя диска в плеере
 
 	InitDiscName(disc_data, disc_name) --- инициализация диска
@@ -157,10 +159,16 @@ function SongTime(item, player, cd_player)
 	local num_track = ICDPCDplayerData.NumTrack; --- номер текущего трека воспроизведения
 	local entropy_disc = ICDPCDplayerData.EntropyDisc; --- изношенность диска
 	local content_disc = ICDPCDplayerData.ContentDisc;
-
+	local cdplayer_volume = ICDPCDplayerData.Volume;
 	local disc_num = num
 	local length_sec = ICDP_DISCS[disc_num].tracks[num_track][2] --получаем длину текущего трека в секундах
-
+	local sound_song = ICDP_DISCS[disc_num].tracks[num_track][1] --получаем название текущего трека
+-- Управление текущей громкостью
+	local sound = sound_song
+	local gameSound = GameSounds.getSound(sound)
+	local volume = gameSound:getUserVolume()
+	gameSound:setUserVolume(cdplayer_volume)
+------------------------------------------------
 	counterX = counterX+1
 
 	if counterX > length_sec+2 then
@@ -215,6 +223,7 @@ end
 --- Выключение CD плеера при пустой батарейки ---
 function PowerOffCDPlayer(item, player, cd_player)
 
+    local player = getSpecificPlayer(0) --игрок
 	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
     local player = getSpecificPlayer(0) --игрок
 	local track_position = ICDPCDplayerData.TrackPosition;
@@ -226,6 +235,7 @@ function PowerOffCDPlayer(item, player, cd_player)
 	local album_title = ICDPCDplayerData.AlbumTitle;
 	local content_disc = ICDPCDplayerData.ContentDisc;
 	local entropy_disc = ICDPCDplayerData.EntropyDisc;
+	local cdplayer_volume = ICDPCDplayerData.Volume;
 
 	for i = 0, player:getInventory():getItems():size() - 1 do
 
@@ -263,6 +273,7 @@ function PowerOffCDPlayer(item, player, cd_player)
 			ICDPCDplayerData.AlbumTitle = album_title;
 			ICDPCDplayerData.ContentDisc = content_disc;
 			ICDPCDplayerData.EntropyDisc = entropy_disc;
+			ICDPCDplayerData.Volume = 0.5;
 		end
 	end
 	StopSong(player)
@@ -305,6 +316,7 @@ function Stop_CD_Player(item, player, cd_player)
 			ICDPCDplayerData.ArtistName = artist_name;
 			ICDPCDplayerData.AlbumTitle = album_title;
 			ICDPCDplayerData.ContentDisc = content_disc;
+			ICDPCDplayerData.Volume = cdplayer_volume;
 		end
 	end
 	StopSong(player)

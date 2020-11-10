@@ -126,6 +126,7 @@ function recipe_Insert_Battery_Into_ICDP_CD_Player_WithDisc(items, result, playe
 	ICDPCDplayerData.NumTrack = 1; --- номер стартового трека по умолчанию после установки диска в плеер
 	ICDPCDplayerData.Power = true;
 	ICDPCDplayerData.EntropyDisc = entropy_disc;
+	ICDPCDplayerData.Volume = 0.5;
 
 	for i=0, items:size()-1 do
 		-- найти аккумулятор и установить заряд плеера с диском на уровень аккумулятора
@@ -148,6 +149,7 @@ function recipe_Insert_Battery_Into_ICDP_CD_Player(items, result, player)
 		local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера после установки батарейки
 		ICDPCDplayerData.ArtistName = getText("IGUI_No_CD"); --записываем в таблицу вновь созданного плеера значение - "Нет CD диска"
 		ICDPCDplayerData.Power = true;
+		ICDPCDplayerData.Volume = 0.5; -- установка половины громкости при вставке батарейки... по умочанию
 	end
 end
 
@@ -187,6 +189,7 @@ function recipe_Remove_CD_From_ICDP_CDPlayer(items, result, player)
 	local album_title = ICDPCDplayerData.AlbumTitle; --- название исполнителя и альбома
 	local content_disc = ICDPCDplayerData.ContentDisc
 	local entropy_disc = ICDPCDplayerData.EntropyDisc;
+	local cdplayer_volume = ICDPCDplayerData.Volume;
 
 	local ICDPCDplayerData = result:getModData(); --получаем таблицу вновь созданного плеера без диска
 	ICDPCDplayerData.Power = power;
@@ -211,6 +214,7 @@ function recipe_Remove_CD_From_ICDP_CDPlayer(items, result, player)
 	ICDPCDDiscData.AlbumTitle = album_title;
 	ICDPCDDiscData.ContentDisc = content_disc;
 	ICDPCDDiscData.EntropyDisc = entropy_disc
+	ICDPCDplayerData.Volume = cdplayer_volume;
  end
 
 function recipe_Remove_CD_from_box(items, result, player) -- [result] = CD-BoxEmpty
@@ -282,6 +286,7 @@ function recipe_Play_CD_Player(items, result, player)
         if items:get(i):getType() == "ICDPCDplayerWithDisc" then
 			result:setUsedDelta(items:get(i):getUsedDelta()); --- Установка заряда на плеер
 			cd_player = items:get(i) --сохраняем ссылку на плеер
+			break
 		end
 	end
 
@@ -295,6 +300,7 @@ function recipe_Play_CD_Player(items, result, player)
 	local num_track = ICDPCDplayerData.NumTrack; --- номер трека - !!! число !!!
 	local content_disc = ICDPCDplayerData.ContentDisc
 	local entropy_disc = ICDPCDplayerData.EntropyDisc;
+	local cdplayer_volume = ICDPCDplayerData.Volume;
 
 	if not cd_player then
 		return --если каким-то чудом всё еще нет ссылки, то выходим из функции, но это симптом бага в другом месте
@@ -317,6 +323,7 @@ function recipe_Play_CD_Player(items, result, player)
 	ICDPCDplayerData.NumTrack = num_track; --- номер трека - !!! число !!!
 	ICDPCDplayerData.ContentDisc = content_disc;
 	ICDPCDplayerData.EntropyDisc = entropy_disc;
+	ICDPCDplayerData.Volume = cdplayer_volume;
 
 	StartPlaySong(player, cd_player)
 
@@ -356,6 +363,7 @@ function recipe_Stop_CD_Player(items, result)
 	local num_track = ICDPCDplayerData.NumTrack; --- номер трека - !!! число !!!
 	local content_disc = ICDPCDplayerData.ContentDisc;
 	local entropy_disc = ICDPCDplayerData.EntropyDisc;
+	local cdplayer_volume = ICDPCDplayerData.Volume;
 
 	local ICDPCDplayerData = result:getModData(); --получаем ссылку на таблицу плеера
 	ICDPCDplayerData.DiscName = disc_name; --получаем имя диска в плеере
@@ -366,4 +374,5 @@ function recipe_Stop_CD_Player(items, result)
 	ICDPCDplayerData.NumTrack = num_track; --- номер трека - !!! число !!!
 	ICDPCDplayerData.ContentDisc = content_disc;
 	ICDPCDplayerData.EntropyDisc = entropy_disc;
+	ICDPCDplayerData.Volume = cdplayer_volume;
 end
