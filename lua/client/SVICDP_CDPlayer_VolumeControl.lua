@@ -14,7 +14,7 @@ function ICDPKeysUp(keynum)
 			local cd_player = getPlayerCDPlayer(player);
 			local ICDPCDplayerData = cd_player:getModData();
 
-			cdplayer_volume = ICDPCDplayerData.Volume;
+			cdplayer_volume = getCDPlayerVolume(ICDPCDplayerData);
 			cdplayer_volume = math.max(tonumber(string.format("%.1f", cdplayer_volume + 0.1)), 1);
 
 			ICDPCDplayerData.Volume = cdplayer_volume;
@@ -24,7 +24,7 @@ function ICDPKeysUp(keynum)
 			local cd_player = getPlayerCDPlayer(player);
 			local ICDPCDplayerData = cd_player:getModData();
 
-			cdplayer_volume = ICDPCDplayerData.Volume;
+			cdplayer_volume = getCDPlayerVolume(ICDPCDplayerData);
 			cdplayer_volume = math.min(tonumber(string.format("%.1f", cdplayer_volume - 0.1)), 0);
 
 			ICDPCDplayerData.Volume = cdplayer_volume;
