@@ -3,6 +3,11 @@ function ICDPKeysUp(keynum)
 
 	local player = getSpecificPlayer(0);
 	local cd_player
+
+	if player == nil then
+		return
+	end
+
 	local counter_item = player:getInventory():FindAll("ICDPCDplayerOn");
 
 	if counter_item:size() ~= 0 and keynum == 201 then -- PageUp
