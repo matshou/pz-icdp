@@ -1,6 +1,6 @@
 local LOC_KEY = {
-	ICDPCDBoxFull = "CD-Box Full",
-	ICDPCDBoxEmpty = "CD-Box Empty",
+	ICDPCDBoxFull = "CD-Box_Full",
+	ICDPCDBoxEmpty = "CD-Box_Empty",
 }
 
 local TYPE_COLOR = {
