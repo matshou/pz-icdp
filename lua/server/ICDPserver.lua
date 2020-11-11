@@ -1,5 +1,5 @@
 ICDP = {}
-ICDP.version = "1.14";
+ICDP.version = "1.17";
 ICDP.author = "Nebula";
 ICDP.modName = "iCDPlayersSV";
 
