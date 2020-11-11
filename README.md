@@ -7,6 +7,17 @@
 This project is an unofficial fork of a [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2268557398) mod created by [Nebula](https://steamcommunity.com/id/nebula-rus).  
 The author has given me permission to host the mod on Github and help develop the mod.
 
+## Table of Content
+
+<!-- toc -->
+* [Summary](#summary)
+* [Features](#features)
+* [Installation](#installation)
+* [Compatibility](#compatibility)
+* [Usage](#usage)
+* [Credits](#credits)
+* [License](#license)
+
 ## Summary
 
 The mod introduces a playable variation of vanilla CD Players that run on batteries and play music. This makes the game more immersive, fun and provides the player with an additional way of reducing boredom and stress.
