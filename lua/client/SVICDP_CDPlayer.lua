@@ -37,24 +37,40 @@ Events.OnTick.Add(function()
 	end
 end)
 
+function ResetVolumeLevels(modData)
+
+	getCore():setOptionSoundVolume(modData.CurrentSoundVolume);
+	getCore():setOptionMusicVolume(modData.CurrentMusicVolume);
+	getCore():setOptionAmbientVolume(modData.CurrentAmbientVolume);
+end
+
+function SetVolumeLevels(sound, music, ambient)
+
+	getSoundManager():setSoundVolume(sound);
+	getSoundManager():setMusicVolume(music);
+	getSoundManager():setAmbientVolume(ambient);
+end
+
 --- проверка наличия Включенного плеера и наличие заряда в плеере - воспроизводить содержимое диска, если заряда нет, то запустить функцию остановки плеера
 function CheckCDPlayerOn(item, player) --- проверка наличия в инвентаре включенного плеера
 
 	local cd_player
 	local player = getPlayer()
 	local counter_item = player:getInventory():FindAll("ICDPCDplayerOn"); --- получаем количество итемов в инвентаре и (true) в сумках
-	local current_music_volume = getCore():getOptionMusicVolume();
 
 	local ICDPCharacterData = player:getModData();
-	ICDPCharacterData.CurrentVolume = current_music_volume;
+
+	ICDPCharacterData.CurrentSoundVolume = getCore():getOptionSoundVolume();
+	ICDPCharacterData.CurrentMusicVolume = getCore():getOptionMusicVolume();
+	ICDPCharacterData.CurrentAmbientVolume = getCore():getOptionAmbientVolume();
 
 	if counter_item:size() == 0 and sound_sv ~= nil then
 
 		getSoundManager():StopSound(sound_sv);
-		getCore():setOptionMusicVolume(current_music_volume);
+		ResetVolumeLevels(ICDPCharacterData);
 
 		if counter_item:size() == 0 and sound_sv == nil then
-			getCore():setOptionMusicVolume(current_music_volume);
+			ResetVolumeLevels(ICDPCharacterData);
 			return
 		end
 
@@ -65,7 +81,7 @@ function CheckCDPlayerOn(item, player) --- проверка наличия в и
 
 			if item:getType() == "ICDPCDplayerOn" and item:getUsedDelta() > 0.01 then --- если дельты плеера достаточно (есть заряд в батарейке)
 
-				getSoundManager():setMusicVolume(0);
+				SetVolumeLevels(0.1, 0, 0.05);
 
 				if item:hasModData() == false then
 					player:getInventory():Remove(item);
@@ -119,7 +135,7 @@ function StartPlaySong(player, cd_player)
 
 	local sound_song = ICDP_DISCS[disc_num].tracks[num_track][1] --получаем название текущего трека
 
-	sound_sv = getSoundManager():PlaySound(sound_song,false,10);
+	sound_sv = getSoundManager():PlaySound(sound_song,false,5);
 	counterX = 0
 
 end
@@ -234,9 +250,7 @@ function PowerOffCDPlayer(item, player, cd_player)
 			item:setUsedDelta(0);
 			cd_player = item
 
-			local ICDPCharacterData = player:getModData() --- получаем ссылку на персонажа
-			local CurrentVolume = ICDPCharacterData.CurrentVolume; -- получаем текущее значение ванильной громкости фоновой музыки
-			getCore():setOptionMusicVolume(CurrentVolume); -- возвращаем ванильную громкость музыки
+			ResetVolumeLevels(player:getModData());
 
 			local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 			ICDPCDplayerData.TrackPosition = 1;
