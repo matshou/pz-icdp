@@ -2,53 +2,34 @@
 function ICDPKeysUp(keynum)
 
 	local player = getSpecificPlayer(0);
-	local cd_player
-	local counter_item = player:getInventory():FindAll("ICDPCDplayerOn");
 
-	if counter_item:size() ~= 0 and keynum == 201 then -- PageUp
-
-		for i = 0, player:getInventory():getItems():size() - 1 do
-			local item = player:getInventory():getItems():get(i);
-
-			if item:getType() == "ICDPCDplayerOn" then
-				cd_player = item;
-				break
-			end
-		end
-
-		local ICDPCDplayerData = cd_player:getModData();
-		cdplayer_volume = ICDPCDplayerData.Volume;
-
-		cdplayer_volume = tonumber(string.format("%.1f", cdplayer_volume + 0.1));
-
-		if cdplayer_volume >= 1 then cdplayer_volume = 1.0
-		end
-
-		local ICDPCDplayerData = cd_player:getModData();
-		ICDPCDplayerData.Volume = cdplayer_volume;
+	if player == nil then
+		return
 	end
 
-	if counter_item:size() ~= 0 and keynum == 209 then -- PageDown
+	local cdp_count = player:getInventory():FindAll("ICDPCDplayerOn");
+	if cdp_count and cdp_count:size() > 0 then
 
-		for i = 0, player:getInventory():getItems():size() - 1 do
-			local item = player:getInventory():getItems():get(i);
+		if keynum == 201 then -- PageUp
 
-			if item:getType() == "ICDPCDplayerOn" then
-				cd_player = item;
-				break
-			end
+			local cd_player = getPlayerCDPlayer(player);
+			local ICDPCDplayerData = cd_player:getModData();
+
+			cdplayer_volume = getCDPlayerVolume(ICDPCDplayerData);
+			cdplayer_volume = math.min(tonumber(string.format("%.1f", cdplayer_volume + 0.1)), 1);
+
+			ICDPCDplayerData.Volume = cdplayer_volume;
+
+		elseif keynum == 209 then -- PageDown
+
+			local cd_player = getPlayerCDPlayer(player);
+			local ICDPCDplayerData = cd_player:getModData();
+
+			cdplayer_volume = getCDPlayerVolume(ICDPCDplayerData);
+			cdplayer_volume = math.max(tonumber(string.format("%.1f", cdplayer_volume - 0.1)), 0);
+
+			ICDPCDplayerData.Volume = cdplayer_volume;
 		end
-
-		local ICDPCDplayerData = cd_player:getModData();
-		cdplayer_volume = ICDPCDplayerData.Volume;
-
-		cdplayer_volume = tonumber(string.format("%.1f", cdplayer_volume - 0.1));
-
-		if cdplayer_volume <= 0 then cdplayer_volume = 0.0
-		end
-
-		local ICDPCDplayerData = cd_player:getModData();
-		ICDPCDplayerData.Volume = cdplayer_volume;
 	end
 end
 

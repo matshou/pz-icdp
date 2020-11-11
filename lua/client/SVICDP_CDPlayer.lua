@@ -37,6 +37,24 @@ Events.OnTick.Add(function()
 	end
 end)
 
+function getCDPlayerVolume(data)
+
+	local cdp_volume = data.Volume;
+	return cdp_volume and cdp_volume or 0;
+end
+
+function getPlayerCDPlayer(player)
+
+	for i = 0, player:getInventory():getItems():size() - 1 do
+		local item = player:getInventory():getItems():get(i);
+
+		if item:getType() == "ICDPCDplayerOn" then
+			return item;
+		end
+	end
+	return nil;
+end
+
 function ResetVolumeLevels(modData)
 
 	getCore():setOptionSoundVolume(modData.CurrentSoundVolume);
@@ -130,7 +148,7 @@ function StartPlaySong(player, cd_player)
 	local num_track = ICDPCDplayerData.NumTrack; --- номер текущего трека воспроизведения
 	local entropy_disc = ICDPCDplayerData.EntropyDisc; --- изношенность диска
 	local content_disc = ICDPCDplayerData.ContentDisc;
-	local cdplayer_volume = ICDPCDplayerData.Volume;
+	local cdplayer_volume = getCDPlayerVolume(ICDPCDplayerData);
 	local disc_num = num
 	local sound_song = ICDP_DISCS[disc_num].tracks[num_track][1] --получаем название текущего трека
 	local sound = sound_song
@@ -139,7 +157,6 @@ function StartPlaySong(player, cd_player)
 	gameSound:setUserVolume(cdplayer_volume)
 	sound_sv = getSoundManager():PlaySound(sound_song,false,cdplayer_volume);
 	counterX = 0
-
 end
 
 function SongTime(item, player, cd_player)
@@ -159,7 +176,7 @@ function SongTime(item, player, cd_player)
 	local num_track = ICDPCDplayerData.NumTrack; --- номер текущего трека воспроизведения
 	local entropy_disc = ICDPCDplayerData.EntropyDisc; --- изношенность диска
 	local content_disc = ICDPCDplayerData.ContentDisc;
-	local cdplayer_volume = ICDPCDplayerData.Volume;
+	local cdplayer_volume = getCDPlayerVolume(ICDPCDplayerData);
 	local disc_num = num
 	local length_sec = ICDP_DISCS[disc_num].tracks[num_track][2] --получаем длину текущего трека в секундах
 	local sound_song = ICDP_DISCS[disc_num].tracks[num_track][1] --получаем название текущего трека
