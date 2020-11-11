@@ -47,7 +47,7 @@ end
 
 --- Извлечение аккумулятора из ICDP CDPlayer с диском
 function recipe_ICDPCDPlayerWithDiscBatteryRemoval_OnCreate(items, result, player)
-	local player = getPlayer()
+	local player = getSpecificPlayer(0);
 	local cd_player
 
 	for i=0, items:size()-1 do
@@ -65,7 +65,7 @@ end
 
 --- Вставить аккумулятор в ванильный CD Player
 function recipe_Insert_Battery_Into_Vanilla_CD_Player(items, result, player)
-	local player = getPlayer() --игрок
+	local player = getSpecificPlayer(0);
 	local cd_player
 
 	for i=0, items:size()-1 do
@@ -83,7 +83,7 @@ end
 
 --- Вставить аккумулятор в ICDP CD Player с диском
 function recipe_Insert_Battery_Into_ICDP_CD_Player_WithDisc(items, result, player)
-    local player = getPlayer() --игрок
+    local player = getSpecificPlayer(0);
 	local cd_player
 	local disc_data
 	local disc_name
@@ -153,7 +153,7 @@ end
 
 --- Извлечь CD из ICDP CD Плеера
 function recipe_Remove_CD_From_ICDP_CDPlayer(items, result, player)
-    local player = getPlayer() --игрок
+    local player = getSpecificPlayer(0);
 	local cd_player
 	local disc_data
 	local power
@@ -274,7 +274,7 @@ end
 
 -- ВОСПРОИЗВЕДЕНИЕ и ОСТАНОВКА ---
 function recipe_Play_CD_Player(items, result, player)
-	local player = getPlayer() --игрок
+	local player = getSpecificPlayer(0); --игрок
 	local cd_player
 
     for i=0, items:size()-1 do
@@ -326,7 +326,7 @@ function recipe_Play_CD_Player(items, result, player)
 end
 
 function recipe_Stop_CD_Player(items, result)
-	local player = getPlayer() --игрок
+	local player = getSpecificPlayer(0); --игрок
 	local cd_player
 
 	StopSong(player)

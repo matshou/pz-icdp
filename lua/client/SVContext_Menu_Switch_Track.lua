@@ -20,7 +20,6 @@ end
 
 --- Переключить на следующий трек контекстным меню ---
 function NextTrack(player, cd_player, item)
-	local player = getPlayer()
     local cd_player --плеер
 	local num_track
 	local track_sum
@@ -63,7 +62,6 @@ end
 
 --- Переключить на предыдущий трек контекстным меню ---
 function PreviousTrack(player, cd_player, item)
-	local player = getPlayer()
     local cd_player --плеер
 	local num_track
 	local track_sum
@@ -103,7 +101,6 @@ end
 --Действие контекстного меню плеера / переключить на следующий трек
 function MenuNextTrack(player, cd_player, item)
 	local cd_player
-	local player = getPlayer()
 
     if not isItemValid(player, cd_player, item) then
         return --no dupe anymore
@@ -123,7 +120,6 @@ end
 --Действие контекстного меню плеера / переключить на предыдущий трек
 function MenuPreviousTrack(player, cd_player, item)
 	local cd_player
-	local player = getPlayer()
 
     if not isItemValid(player, cd_player, item) then
         return --no dupe anymore

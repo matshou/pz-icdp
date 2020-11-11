@@ -55,7 +55,7 @@ end
 function CheckCDPlayerOn(item, player) --- проверка наличия в инвентаре включенного плеера
 
 	local cd_player
-	local player = getPlayer()
+	local player = getSpecificPlayer(0)
 	local counter_item = player:getInventory():FindAll("ICDPCDplayerOn"); --- получаем количество итемов в инвентаре и (true) в сумках
 
 	local ICDPCharacterData = player:getModData();
@@ -143,9 +143,9 @@ end
 function SongTime(item, player, cd_player)
 
 	local disc_data = cd_player
-	local player = getPlayer()
 
 	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
+	local player = getSpecificPlayer(0)
 	local disc_name = ICDPCDplayerData.DiscName; --получаем имя диска в плеере
 
 	InitDiscName(disc_data, disc_name) --- инициализация диска
@@ -183,7 +183,7 @@ function SongTime(item, player, cd_player)
 end
 
 function SpendingDelta(items, player) --- Расход энергии ---
-	local player = getPlayer()
+	local player = getSpecificPlayer(0)
 
 	for i = 0, player:getInventory():getItems():size() - 1 do
 
@@ -214,9 +214,9 @@ end
 
 --- Выключение CD плеера при пустой батарейки ---
 function PowerOffCDPlayer(item, player, cd_player)
-    local player = getPlayer() --игрок
 
 	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
+    local player = getSpecificPlayer(0) --игрок
 	local track_position = ICDPCDplayerData.TrackPosition;
 	local num_track = ICDPCDplayerData.NumTrack;
 	local name_track = ICDPCDplayerData.NameTrack;
@@ -270,7 +270,7 @@ end
 
 --- Принудительная остановка воспроизведения
 function Stop_CD_Player(item, player, cd_player)
-    local player = getPlayer() --игрок
+    local player = getSpecificPlayer(0) --игрок
 	local cdplayer_delta
 
 	for i = 0, player:getInventory():getItems():size() - 1 do

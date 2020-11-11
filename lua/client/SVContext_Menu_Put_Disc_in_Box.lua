@@ -108,7 +108,7 @@ end
 --- Вставить диск в пустую коробку  ---
 function SearchEmptyBoxes(item, player, disc_data, disc_name)
 
-	local player = getPlayer()
+	local player = getSpecificPlayer(0)
 
 	local ICDPCDDiscBoxData = disc_data:getModData(); --таблица диска
 	local disc_name = ICDPCDDiscBoxData.DiscName;

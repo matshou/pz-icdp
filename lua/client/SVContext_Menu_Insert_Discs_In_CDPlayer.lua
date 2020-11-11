@@ -19,12 +19,8 @@ end
 
 ---Вставить ICDP диск в Vanilla плеер контекстным меню ---
 function AltInsertICDPCDDiscIntoVanillaCDplayer(player, disc_name, disc_data, item)
-
-	local player = getPlayer()
 	local cd_player_delta
     local cd_player
-
-	local player = getPlayer()
 
     for i = 0, player:getInventory():getItems():size() - 1 do
 	local item = player:getInventory():getItems():get(i);
@@ -73,8 +69,6 @@ end
 
 --- Вставить ICDP диск в ICDP CDPlayer ---
 function AltInsertICDPCDDiscIntoICDPCDplayer(player, disc_name, disc_data, item)
-
-	local player = getPlayer()
 	local cd_player_delta
     local cd_player
 
@@ -137,7 +131,6 @@ end
 
 --Действие контекстного меню ICDP диска
 function ContextMenuInsertICDPDisc(player, disc_name, disc_data, item)
-	local player = getPlayer()
 
     if not isItemValid(player, disc_name, item) then
         return --no dupe anymore
