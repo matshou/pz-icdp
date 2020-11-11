@@ -9,8 +9,6 @@ The mod introduces a playable variation of vanilla CD Players that run on batter
 
 ## Features
 
----
-
 ### Playable CD's
 
 - Playable CD items are obtained by examining vanilla CD items through the context menu.
@@ -41,16 +39,12 @@ The mod introduces a playable variation of vanilla CD Players that run on batter
 
 ## Installation
 
----
-
 To install the mod choose one of the following options:
 
 - Download the latest mod [release](https://github.com/yooksi/pz-icdp/releases) from project repository on Github and follow the standard [installation](https://pzwiki.net/wiki/Modding#How_to_install.2Fplay_mods).
 - Subscribe to the mod on [Steam workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2268557398) and wait for Steam to download the files.
 
 ## Compatibility
-
----
 
 - The mod is **not** compatible with:
 	- [Immersive CD Players (text version)](https://steamcommunity.com/sharedfiles/filedetails/?id=2025319303).
@@ -63,8 +57,6 @@ To install the mod choose one of the following options:
 
 ## Usage
 
----
-
 - Playable CD items are obtained by selecting `Inspect Disc` on vanilla CD items through the context menu.
 - Immersive CD Player can be obtained with the following steps:
   - Insert a battery in the vanilla CD player by selecting `Insert Battery` in the context menu.
@@ -76,12 +68,8 @@ To install the mod choose one of the following options:
 
 ## Credits
 
----
-
 All credits go to [Nebula](https://steamcommunity.com/id/nebula-rus), the original mod author that maintains the Steam workshop version.
 
 ## License
-
----
 
 This project is licensed under [BSD 3-Clause Clear License](https://github.com/yooksi/pz-icdp/blob/master/LICENSE.txt).
