@@ -22,22 +22,22 @@ local CDBoxWindowHeight = 275;
 function CDBoxWindow:setText(newText)
 	CDBoxWindow.HomeWindow.text = newText;
 	CDBoxWindow.HomeWindow:paginate();
-	
+
 	local tempTexture = getTexture("media/textures/cd_cover/" .. CDBoxWindow.album_cover .. ".png")
-	if (tempTexture) then self.Image:setImage(tempTexture) 
+	if (tempTexture) then self.Image:setImage(tempTexture)
 	else self.Image:setImage(getTexture("media/textures/cd_cover/no_cover.png")) end
 end
 
 function CDBoxWindow:createChildren()
 	ISCollapsableWindow.createChildren(self);
-	
+
 	self.Image = ISButton:new(10, 25, 240, 240, " ", nil, nil);
 	self.Image:setImage(getTexture("media/textures/cd_cover/no_cover.png"))
 	self.Image:setVisible(true);
 	self.Image:setEnable(true);
 	--self.Image:addToUIManager();
 	self:addChild(self.Image)
-	
+
 	self.HomeWindow = ISRichTextPanel:new(250, 20, 340, 240);
 	self.HomeWindow:initialise();
 	self.HomeWindow.autosetheight = false

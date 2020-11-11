@@ -17,29 +17,29 @@ function ISToolTipInv:render()
 	if self.item ~= cache_render_item then
 		cache_render_item = self.item
 		cache_render_text = nil
-		
+
 		if self.item and self.item:getType() then
 			local disc_name = self.item:getType()
-		
+
 			if string.find(disc_name,"ICDPCDDisc",1,true) == 1 then --- начало строки итема - не равно "ICDPCDDisc" ***** СПАСИБО STAR за помощь! *****
 				local disc_name = "ICDPCDDisc";
-				
+
 				local ICDPCDDiscData = self.item:getModData() -- получаем таблицу предмета
 				album_title = ICDPCDDiscData.AlbumTitle; --название альбома
 
-				if disc_name then				
+				if disc_name then
 					cache_render_type = disc_name
 					local localization = disc_name
 					local key = LOC_KEY[disc_name]
 
 					if key then
-					
+
 						local trans = getText(key)
-					
+
 						if trans ~= key then --translation exists!
 							localization = trans
 						end
-						
+
 					end
 
 					cache_render_text = tostring(album_title) -- getText("IGUI_") .. localization
@@ -52,7 +52,7 @@ function ISToolTipInv:render()
 	if not cache_render_text then --small item (or error?)
 		return old_render(self)
 	end
-	
+
 	-- Ninja double injection in injection!
 	local stage = 1
 	local save_th = 0
@@ -62,12 +62,12 @@ function ISToolTipInv:render()
 		stage = 2
 		save_th = num
 		num = num + 19 --- высота окна tooltip
-		else 
+		else
 			stage = -1 --error
 		end
 		return old_setHeight(self, num, ...)
 	end
-	
+
 	local old_drawRectBorder = self.drawRectBorder
 	self.drawRectBorder = function(self, ...)
 	if stage == 2 then

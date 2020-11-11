@@ -6,7 +6,7 @@ function recipe_Insert_Battery_Into_ICDP_CD_Player_TestIsValid(sourceItem, resul
 		return sourceItem:getUsedDelta() == 0; -- Разрешите вставлять аккумулятор только в том случае, если в плеере нет заряда.
 	end
 	return true -- the battery
-end	
+end
 
 --- Проверка наличия заряда в ICDP CD Player с диском
 function recipe_Insert_Battery_Into_ICDP_CD_Player_WithDiscTestIsValid(sourceItem, result)
@@ -14,7 +14,7 @@ function recipe_Insert_Battery_Into_ICDP_CD_Player_WithDiscTestIsValid(sourceIte
 		return sourceItem:getUsedDelta() == 0; -- Разрешите вставлять аккумулятор только в том случае, если в плеере нет заряда.
 	end
 	return true -- the battery
-end	
+end
 
 -- Проверка наличия заряда больше нуля в ICDP CD Player чтобы разрешить извлечение аккумулятора
 function recipe_ICDPCDPlayerBatteryRemoval_TestIsValid(sourceItem)
@@ -58,9 +58,9 @@ function recipe_ICDPCDPlayerWithDiscBatteryRemoval_OnCreate(items, result, playe
             cd_player = items:get(i) --сохраняем ссылку на плеер
 		end
 	end
-	
+
 	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
-	ICDPCDplayerData.Power = false; 
+	ICDPCDplayerData.Power = false;
 end
 
 --- Вставить аккумулятор в ванильный CD Player
@@ -93,7 +93,7 @@ function recipe_Insert_Battery_Into_ICDP_CD_Player_WithDisc(items, result, playe
 	local content_disc
 	local entropy_disc
 	local desc_box
-	
+
     for i=0, items:size()-1 do
 		-- найти ICDP плеер с диском
         if items:get(i):getType() == "ICDPCDplayerWithDisc" then
@@ -101,7 +101,7 @@ function recipe_Insert_Battery_Into_ICDP_CD_Player_WithDisc(items, result, playe
 			break --выходим из цикла, т.к. ссылка уже получена
          end
     end
-	
+
     if not cd_player then
         return --если каким-то чудом всё еще нет ссылки, то выходим из функции, но это симптом бага в другом месте
     end
@@ -114,8 +114,8 @@ function recipe_Insert_Battery_Into_ICDP_CD_Player_WithDisc(items, result, playe
 	content_disc = ICDPCDplayerData.ContentDisc;
 	entropy_disc = ICDPCDplayerData.EntropyDisc;
 
-	cd_player = result 
-	
+	cd_player = result
+
 	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 	ICDPCDplayerData.DiscName = disc_name; --получаем имя диска в плеере
 	ICDPCDplayerData.TrackSum = track_sum;
@@ -143,8 +143,8 @@ function recipe_Insert_Battery_Into_ICDP_CD_Player(items, result, player)
 		if items:get(i):getType() == "Battery" then
 			result:setUsedDelta(items:get(i):getUsedDelta());
 		end
-	
-		cd_player = result 
+
+		cd_player = result
 		local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера после установки батарейки
 		ICDPCDplayerData.ArtistName = getText("IGUI_No_CD"); --записываем в таблицу вновь созданного плеера значение - "Нет CD диска"
 		ICDPCDplayerData.Power = true;
@@ -157,25 +157,25 @@ function recipe_Remove_CD_From_ICDP_CDPlayer(items, result, player)
 	local cd_player
 	local disc_data
 	local power
-	
+
     if not player then
         return --если нет игрока, то выходим из функции
     end
-   
+
     for i=0, items:size()-1 do
 		-- найти ICDP плеер с диском и установить уровень заряда в [result] - как у исходного
         if items:get(i):getType() == "ICDPCDplayerWithDisc" then
-		
+
 			cd_player = items:get(i) --сохраняем ссылку на удаляемый плеер
 			result:setUsedDelta(items:get(i):getUsedDelta()); --устанавливаем дельту на ICDP плеер без диска [result]
-			
+
 			if items:get(i):getUsedDelta() == 0 then
 				power = false
-			
+
 				elseif items:get(i):getUsedDelta() > 0 then
 				power = true
 			end
-			
+
 			break --выходим из цикла, т.к. ссылка уже получена
         end
 	end
@@ -187,12 +187,12 @@ function recipe_Remove_CD_From_ICDP_CDPlayer(items, result, player)
 	local album_title = ICDPCDplayerData.AlbumTitle; --- название исполнителя и альбома
 	local content_disc = ICDPCDplayerData.ContentDisc
 	local entropy_disc = ICDPCDplayerData.EntropyDisc;
-	
+
 	local ICDPCDplayerData = result:getModData(); --получаем таблицу вновь созданного плеера без диска
 	ICDPCDplayerData.Power = power;
-	
+
 	if disc_name ~= nil then player:getInventory():AddItem("ICDP." .. (disc_name));  --добавляем в инвентарь диск с именем взятым из таблицы удаленного плеера
-	
+
 	elseif ICDPCDplayerData.DiscName == nil then player:getInventory():AddItem("ICDP.ICDPCDDisc" .. (1)); -- если имя диска отсутствует то добавляем поцарапанный ICDCDDisc1
 	end
 
@@ -243,9 +243,9 @@ function recipe_Remove_CD_from_box(items, result, player) -- [result] = CD-BoxEm
 		ICDPCDDiscBoxData.AlbumTitle = album_title;
 		ICDPCDDiscBoxData.ContentDisc = content_disc;
 		ICDPCDDiscBoxData.Desc = desc;  -- наличие описания на коробке
-		
+
 		else -- пустая коробка от диска будет чистой, без описания... девственна :)
-	end 
+	end
 
 	if disc_name ~= nil then
 		getPlayer():getInventory():AddItem("ICDP." .. (disc_name)) --- добавляем диск
@@ -263,7 +263,7 @@ function recipe_Remove_CD_from_box(items, result, player) -- [result] = CD-BoxEm
 	end
 
 	local ICDPCDDiscData = disc_data:getModData();
-	
+
 	ICDPCDDiscData.DiscName = disc_name; -- имя диска (item)
 	ICDPCDDiscData.ArtistName = artist_name; -- Название исполнителя
 	ICDPCDDiscData.AlbumTitle = album_title; -- название альбома
@@ -272,7 +272,7 @@ function recipe_Remove_CD_from_box(items, result, player) -- [result] = CD-BoxEm
 	ICDPCDDiscData.EntropyDisc = entropy_disc; -- изношенность диска
 end
 
--- ВОСПРОИЗВЕДЕНИЕ и ОСТАНОВКА --- 
+-- ВОСПРОИЗВЕДЕНИЕ и ОСТАНОВКА ---
 function recipe_Play_CD_Player(items, result, player)
 	local player = getPlayer() --игрок
 	local cd_player
@@ -284,7 +284,7 @@ function recipe_Play_CD_Player(items, result, player)
 			cd_player = items:get(i) --сохраняем ссылку на плеер
 		end
 	end
-	
+
 	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 	local disc_name = ICDPCDplayerData.DiscName; --получаем имя диска в плеере
 	local track_sum = ICDPCDplayerData.TrackSum; --- количество треков в диске
@@ -301,13 +301,13 @@ function recipe_Play_CD_Player(items, result, player)
 	end
 
 	cd_player = result
-	
+
 	local ICDPCharacterData = player:getModData()
 	ICDPCharacterData.CurrentVolume = getCore():getOptionMusicVolume();
-	
+
 	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 	ICDPCDplayerData.DiscName = disc_name; --получаем имя диска в плеере
-	ICDPCDplayerData.ArtistName = artist_name; --получаем имя исполнителя 
+	ICDPCDplayerData.ArtistName = artist_name; --получаем имя исполнителя
 	ICDPCDplayerData.TrackPosition = track_position; --получаем позицию воспроизведения песни
 	ICDPCDplayerData.TrackSum = track_sum; --- количество треков в диске
 	ICDPCDplayerData.AlbumTitle = album_title; --- название исполнителя и альбома
@@ -315,7 +315,7 @@ function recipe_Play_CD_Player(items, result, player)
 	ICDPCDplayerData.NumTrack = num_track; --- номер трека - !!! число !!!
 	ICDPCDplayerData.ContentDisc = content_disc;
 	ICDPCDplayerData.EntropyDisc = entropy_disc;
-	
+
 	StartPlaySong(player, cd_player)
 
 	if disc_name == nil then
@@ -326,9 +326,9 @@ end
 function recipe_Stop_CD_Player(items, result)
 	local player = getPlayer() --игрок
 	local cd_player
-	
+
 	StopSong(player)
-	
+
     for i=0, items:size()-1 do
 		-- найти включенный ICDP плеер
         if items:get(i):getType() == "ICDPCDplayerOn" then
@@ -337,20 +337,20 @@ function recipe_Stop_CD_Player(items, result)
 			break
         end
     end
-	
+
 	if not cd_player then
 		print("!!!ERROR - IN RECIPE!!!")
         return --если каким-то чудом всё еще нет ссылки, то выходим из функции, но это симптом бага в другом месте
 	end
-	
+
 	local ICDPCharacterData = player:getModData() --- получаем ссылку на персонажа
 	local CurrentVolume = ICDPCharacterData.CurrentVolume; -- получаем текущее значение ванильной громкости фоновой музыки
 
 	getCore():setOptionMusicVolume(CurrentVolume); --- устанавливаем полученную громкость
-	
+
 	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 	local disc_name = ICDPCDplayerData.DiscName; --получаем имя диска в плеере
-	local artist_name = ICDPCDplayerData.ArtistName; --получаем имя исполнителя 
+	local artist_name = ICDPCDplayerData.ArtistName; --получаем имя исполнителя
 	local track_position = ICDPCDplayerData.TrackPosition; --получаем позицию воспроизведения песни
 	local track_sum = ICDPCDplayerData.TrackSum; --- количество треков в диске
 	local album_title = ICDPCDplayerData.AlbumTitle; --- название исполнителя и альбома
@@ -360,7 +360,7 @@ function recipe_Stop_CD_Player(items, result)
 
 	local ICDPCDplayerData = result:getModData(); --получаем ссылку на таблицу плеера
 	ICDPCDplayerData.DiscName = disc_name; --получаем имя диска в плеере
-	ICDPCDplayerData.ArtistName = artist_name; --получаем имя исполнителя 
+	ICDPCDplayerData.ArtistName = artist_name; --получаем имя исполнителя
 	ICDPCDplayerData.TrackPosition = track_position; --получаем позицию воспроизведения песни
 	ICDPCDplayerData.TrackSum = track_sum; --- количество треков в диске
 	ICDPCDplayerData.AlbumTitle = album_title; --- название исполнителя и альбома

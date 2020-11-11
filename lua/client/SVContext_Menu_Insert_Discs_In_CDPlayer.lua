@@ -12,7 +12,7 @@ local function DisableOption(option, text)
     tooltip.description = text;
     option.toolTip = tooltip;
 end
- 
+
 local function isItemValid(player, disc_name, item)
     return item:getContainer() == player:getInventory();
 end
@@ -23,9 +23,9 @@ function AltInsertICDPCDDiscIntoVanillaCDplayer(player, disc_name, disc_data, it
 	local player = getPlayer()
 	local cd_player_delta
     local cd_player
-	
+
 	local player = getPlayer()
-	
+
     for i = 0, player:getInventory():getItems():size() - 1 do
 	local item = player:getInventory():getItems():get(i);
         if item:getType() == "CDplayer" then
@@ -33,9 +33,9 @@ function AltInsertICDPCDDiscIntoVanillaCDplayer(player, disc_name, disc_data, it
 		break
 		end
 	end
-	
+
 	player:getInventory():AddItem("ICDP.ICDPCDplayerWithDisc"); --добавляем ICDP плеер с диском
-	
+
 	for i = 0, player:getInventory():getItems():size() - 1 do
 	local item = player:getInventory():getItems():get(i);
 		if item:getType() == "ICDPCDplayerWithDisc" then --находим ICDP плеер с диском
@@ -44,21 +44,21 @@ function AltInsertICDPCDDiscIntoVanillaCDplayer(player, disc_name, disc_data, it
 			break
 		end
 	end
-	
+
 	InitDiscName(disc_data, disc_name); --инициализируем диск --- ?????
-	
+
 	local ICDPCDDiscData = disc_data:getModData(); --таблица диска
 	local num = ICDPCDDiscData.disc_num --- таблица диска ---???????
-	
+
 	local disc_name = ICDP_DISCS[num].disc_name or "???"; --получаем имя диска
 	local artist_name = ICDP_DISCS[num].artist_name or "???"; --получаем имя исполнителя
 	local track_sum = ICDP_DISCS[num].track_sum; --- количество треков в диске
 	local album_title = ICDP_DISCS[num].album_title; --- название исполнителя и альбома
 	local content_disc = ICDP_DISCS[num].content_disc
-	local entropy_disc = ICDPCDDiscData.EntropyDisc; --- изношенность диска  
-	
+	local entropy_disc = ICDPCDDiscData.EntropyDisc; --- изношенность диска
+
 	player:getInventory():Remove(disc_name); --- удаляем диск
-	
+
 	local ICDPCDplayerData = cd_player:getModData(); -- получаем таблицу созданного плеера
 	ICDPCDplayerData.DiscName = disc_name; -- записываем в поле таблицы плеера имя диска
 	ICDPCDplayerData.ArtistName = artist_name;
@@ -77,7 +77,7 @@ function AltInsertICDPCDDiscIntoICDPCDplayer(player, disc_name, disc_data, item)
 	local player = getPlayer()
 	local cd_player_delta
     local cd_player
-	
+
 	local ICDPCDDiscData = disc_data:getModData(); --таблица диска
 
 	if ICDPCDDiscData.AlbumTitle == nil then
@@ -93,7 +93,7 @@ function AltInsertICDPCDDiscIntoICDPCDplayer(player, disc_name, disc_data, item)
 			break
 		end
 	end
-	
+
 	player:getInventory():AddItem("ICDP.ICDPCDplayerWithDisc"); -- добавляем ICDP плеер с диском
 
 	for i = 0, player:getInventory():getItems():size() - 1 do
@@ -104,23 +104,23 @@ function AltInsertICDPCDDiscIntoICDPCDplayer(player, disc_name, disc_data, item)
 			break
 		end
 	end
-	
+
 	if cd_player_delta == 0 then power = false
 		elseif cd_player_delta > 0 then power = true
 	end
 
 	InitDiscName(disc_data, disc_name); --инициализируем диск --- ?????
-	
+
 	local ICDPCDDiscData = disc_data:getModData(); --таблица диска
 	local num = ICDPCDDiscData.disc_num --- таблица диска ---???????
-		
+
 	local disc_name = ICDP_DISCS[num].disc_name or "???"; --получаем имя диска
 	local artist_name = ICDP_DISCS[num].artist_name or "???"; --получаем имя исполнителя
 	local track_sum = ICDP_DISCS[num].track_sum; --- количество треков в диске
 	local album_title = ICDP_DISCS[num].album_title; --- название исполнителя и альбома
 	local content_disc = ICDP_DISCS[num].content_disc
-	local entropy_disc = ICDPCDDiscData.EntropyDisc; --- изношенность диска  
-	
+	local entropy_disc = ICDPCDDiscData.EntropyDisc; --- изношенность диска
+
 	player:getInventory():Remove(disc_name); --- удаляем вставляемый диск
 
 	local ICDPCDplayerData = cd_player:getModData(); -- получаем таблицу созданного плеера
@@ -138,7 +138,7 @@ end
 --Действие контекстного меню ICDP диска
 function ContextMenuInsertICDPDisc(player, disc_name, disc_data, item)
 	local player = getPlayer()
-	
+
     if not isItemValid(player, disc_name, item) then
         return --no dupe anymore
     end
@@ -165,35 +165,35 @@ local function checkInvItemICDPDisc(player, context, worldobjects, item)
     local disc_name = item:getType()
 	local disc_data = item
 	local check_cdplayer
-	
+
     if not disc_name then
         return
     end
-	
+
 	if not isItemValid(player, disc_name, item) then
         return --no dupe anymore
     end
-	
+
 	if string.find(disc_name,"ICDPCDDisc",1,true) ~= 1 then --- начало строки итема - не равно "ICDPCDDisc" ***** СПАСИБО STAR за помощь! *****
         return
 	end
-    
+
    	for i = 0, player:getInventory():getItems():size() - 1 do
 		local cd_player = player:getInventory():getItems():get(i);
-	
+
 		if cd_player:getType() == "ICDPCDplayer" or cd_player:getType() == "CDplayer" then -- проверка наличия CD плееров
 			check_cdplayer = true
 		end
 	end
-	
+
 	for i = 0, player:getInventory():getItems():size() - 1 do
 		local cd_player = player:getInventory():getItems():get(i);
-	
+
 		if cd_player:getType() == "ICDPCDplayerWithDisc" then -- если есть ICDP плеер с диском - то не показывать контекстное меню
 			return
 		end
 	end
-	
+
 	if  check_cdplayer ~= true then -- если нет ICDP плеера, или Vanilla плеера без диска, то не показывать меню
 		return
 	end
@@ -203,15 +203,15 @@ local function checkInvItemICDPDisc(player, context, worldobjects, item)
         DisableOption(option, getText("IGUI_ContextMenu_Cant_Action"))
     end
 end
- 
+
 --Добавляет пункт меню для ICDP Дисков
 local invContextMenuICDPDisc = function(_player, context, worldobjects, test)
     local playerObj = getSpecificPlayer(_player);
-   
+
     for i,k in pairs(worldobjects) do
     -- inventory item list
         if instanceof(k, "InventoryItem") then
-            checkInvItemICDPDisc(playerObj, context, worldobjects, k);          
+            checkInvItemICDPDisc(playerObj, context, worldobjects, k);
         elseif not instanceof(k, "InventoryItem") and k.items and #k.items > 1 then
             checkInvItemICDPDisc(playerObj, context, worldobjects, k.items[1]);
         end

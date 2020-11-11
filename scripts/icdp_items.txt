@@ -81,7 +81,7 @@ module ICDP
         Weight				=			0.02,
 		Tooltip				=			Metallica - Metallica,
     }
-	
+
 	item ICDPCDDisc6
     {
         Type				=			Normal,
@@ -90,7 +90,7 @@ module ICDP
         Weight				=			0.02,
 		Tooltip				=			The Rock - Hits vol.,
     }
-	
+
 	item ICDPCDDisc7
     {
         Type				=			Normal,
@@ -99,7 +99,7 @@ module ICDP
         Weight				=			0.02,
 		Tooltip				=			2Pac - Strictly 4 My N.I.G.G.A.Z.,
     }
-	
+
 	item ICDPCDDisc8
     {
         Type				=			Normal,
@@ -108,7 +108,7 @@ module ICDP
         Weight				=			0.02,
 		Tooltip				=			Nirvana - In Utero,
     }
-	
+
 	item ICDPCDDisc9
     {
         Type				=			Normal,
@@ -117,7 +117,7 @@ module ICDP
         Weight				=			0.02,
 		Tooltip				=			AC/DC - Back In Black,
     }
-	
+
 	item ICDPCDDisc10
     {
         Type				=			Normal,
@@ -126,7 +126,7 @@ module ICDP
         Weight				=			0.02,
 		Tooltip				=			Metallica - Master Of Puppets,
     }
-	
+
 	item ICDPCDDisc11
     {
         Type				=			Normal,
@@ -135,7 +135,7 @@ module ICDP
         Weight				=			0.02,
 		Tooltip				=			Iron Maiden - Fear of the Dark,
     }
-	
+
 	item ICDPCDDisc12
     {
         Type				=			Normal,
@@ -144,7 +144,7 @@ module ICDP
         Weight				=			0.02,
 		Tooltip				=			Korn - Korn,
     }
-	
+
 	item ICDPCDDisc13
     {
         Type				=			Normal,
@@ -155,7 +155,7 @@ module ICDP
     }
 
 /************************ Device ************************/
-	
+
 item ICDPCDplayer
     {
 		Type			= Drainable,

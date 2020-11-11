@@ -4,7 +4,7 @@ module ICDP
 	{
 		Base
 	}
-	
+
 /*************RECIPES*******************/
 
 recipe Insert Battery into Vanilla CD Player
@@ -43,8 +43,8 @@ recipe Insert Battery into ICDP CD Player With Disc
 		CanBeDoneFromFloor:false,
 		OnTest:recipe_Insert_Battery_Into_ICDP_CD_Player_WithDiscTestIsValid,
 		OnCreate:recipe_Insert_Battery_Into_ICDP_CD_Player_WithDisc,
-	}	
-	
+	}
+
 recipe Remove Battery from ICDP CD Player
 	{
 		destroy ICDPCDplayer,
@@ -54,7 +54,7 @@ recipe Remove Battery from ICDP CD Player
 		NeedToBeLearn:false,
 		OnTest:recipe_ICDPCDPlayerBatteryRemoval_TestIsValid,
 		OnCreate:recipe_ICDPCDPlayerBatteryRemoval_OnCreate,
-	}	
+	}
 
 recipe Remove Battery from ICDP CD Player with Disc
 	{
@@ -89,7 +89,7 @@ recipe Remove CD from CD-Box
 		CanBeDoneFromFloor:false,
 		OnCreate:recipe_Remove_CD_from_box,
 	}
-	
+
 recipe Play CD Player
 	{
 		destroy ICDPCDplayerWithDisc,
@@ -101,7 +101,7 @@ recipe Play CD Player
 		OnTest:recipe_Play_CD_Player_TestIsValid,
 		OnCreate:recipe_Play_CD_Player,
 	}
-	
+
 recipe Stop CD Player
 	{
 		destroy ICDPCDplayerOn,

@@ -21,14 +21,14 @@ Events.OnTick.Add(function()
 	local game_minute = getGameTime():getMinutes()
 
 	if game_minute ~= lastGameMinute then --- таймер срабатывает раз в минуту игрового времени
-		SpendingDelta()		
+		SpendingDelta()
 		lastGameMinute = game_minute
 	end
 
 	if sec ~= icdp_reallastSec then
 		icdp_realtime_counter = icdp_realtime_counter + 1
 		icdp_reallastSec = sec
-		
+
 		if icdp_realtime_counter == 1 then --- таймер срабатывает раз в секунду...
 			icdp_realtime_counter = 0
 
@@ -37,7 +37,7 @@ Events.OnTick.Add(function()
 	end
 end)
 
---- проверка наличия Включенного плеера и наличие заряда в плеере - воспроизводить содержимое диска, если заряда нет, то запустить функцию остановки плеера 
+--- проверка наличия Включенного плеера и наличие заряда в плеере - воспроизводить содержимое диска, если заряда нет, то запустить функцию остановки плеера
 function CheckCDPlayerOn(item, player) --- проверка наличия в инвентаре включенного плеера
 
 	local cd_player
@@ -47,7 +47,7 @@ function CheckCDPlayerOn(item, player) --- проверка наличия в и
 
 	local ICDPCharacterData = player:getModData();
 	ICDPCharacterData.CurrentVolume = current_music_volume;
-	
+
 	if counter_item:size() == 0 and sound_sv ~= nil then
 
 		getSoundManager():StopSound(sound_sv);
@@ -57,14 +57,14 @@ function CheckCDPlayerOn(item, player) --- проверка наличия в и
 			getCore():setOptionMusicVolume(current_music_volume);
 			return
 		end
-		
-		else
+
+	else
 
 		for i = 0, player:getInventory():getItems():size() - 1 do
 			local item = player:getInventory():getItems():get(i);
-			
+
 			if item:getType() == "ICDPCDplayerOn" and item:getUsedDelta() > 0.01 then --- если дельты плеера достаточно (есть заряд в батарейке)
-				
+
 				getSoundManager():setMusicVolume(0);
 
 				if item:hasModData() == false then
@@ -73,7 +73,7 @@ function CheckCDPlayerOn(item, player) --- проверка наличия в и
 				return end
 
 				cd_player = item
-				
+
 				if sound_sv ~= nil then
 					SongTime(item, player, cd_player); --- воспроизведение
 				end
@@ -81,7 +81,7 @@ function CheckCDPlayerOn(item, player) --- проверка наличия в и
 				elseif item:getType() == "ICDPCDplayerOn" and item:getUsedDelta() < 0.01  then --- если дельта плеера закончилась (кончилась батарейка)
 					cd_player = item
 					PowerOffCDPlayer(item, player, cd_player); --- выключить плеер
-				
+
 				break
 			end
 		end
@@ -100,11 +100,11 @@ end
 --- Воспроизведение ---
 function StartPlaySong(player, cd_player)
 
-	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера	
+	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 	local disc_name = ICDPCDplayerData.DiscName; --получаем имя диска в плеере
 	local disc_data = cd_player
 	local vanila_music_volume = getCore():getOptionMusicVolume();
-	
+
 	InitDiscName(disc_data, disc_name) --- инициализация диска
 	local num = ICDPCDplayerData.disc_num; --- таблица диска/диск типа в плеере
 	local disc_name = ICDP_DISCS[num].disc_name or "???"; --получаем имя диска из таблицы дисков
@@ -114,24 +114,24 @@ function StartPlaySong(player, cd_player)
 	local num_track = ICDPCDplayerData.NumTrack; --- номер текущего трека воспроизведения
 	local entropy_disc = ICDPCDplayerData.EntropyDisc; --- изношенность диска
 	local content_disc = ICDPCDplayerData.ContentDisc;
-	
+
 	local disc_num = num
-	
+
 	local sound_song = ICDP_DISCS[disc_num].tracks[num_track][1] --получаем название текущего трека
-	
+
 	sound_sv = getSoundManager():PlaySound(sound_song,false,10);
 	counterX = 0
-	
+
 end
 
 function SongTime(item, player, cd_player)
 
 	local disc_data = cd_player
 	local player = getPlayer()
-	
-	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера	
+
+	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 	local disc_name = ICDPCDplayerData.DiscName; --получаем имя диска в плеере
-	
+
 	InitDiscName(disc_data, disc_name) --- инициализация диска
 	local num = ICDPCDplayerData.disc_num; --- таблица диска/диск типа в плеере
 	local disc_name = ICDP_DISCS[num].disc_name or "???"; --получаем имя диска из таблицы дисков
@@ -141,18 +141,18 @@ function SongTime(item, player, cd_player)
 	local num_track = ICDPCDplayerData.NumTrack; --- номер текущего трека воспроизведения
 	local entropy_disc = ICDPCDplayerData.EntropyDisc; --- изношенность диска
 	local content_disc = ICDPCDplayerData.ContentDisc;
-	
+
 	local disc_num = num
 	local length_sec = ICDP_DISCS[disc_num].tracks[num_track][2] --получаем длину текущего трека в секундах
 
 	counterX = counterX+1
-	
+
 	if counterX > length_sec+2 then
 		counterX = 0
 		StopSong(player)
-	
+
 		num_track = num_track+1
-	
+
 		if num_track > track_sum then
 			num_track = 1
 		end
@@ -162,7 +162,7 @@ function SongTime(item, player, cd_player)
 			player:Say("Track-" .. tostring(num_track),1.0, 1.0, 0.0, UIFont.Dialogue, 30.0, "radio");
 			ICDPCDplayerData.NumTrack = num_track;
 			StartPlaySong(player, cd_player)
-		end	
+		end
 	end
 end
 
@@ -176,10 +176,10 @@ function SpendingDelta(items, player) --- Расход энергии ---
 		if item:getType() == "ICDPCDplayerOn" then
 			--- ************ Расходуем дельту плеера при воспроизведении / 1 раз в минуту игрового времени *************
 			item:setUsedDelta((item:getUsedDelta() - 0.002)); ---  8 часов воспроизведения
-			
+
 			-- Влияем на настроение, если персонаж не глухой
 			if not player:HasTrait("Deaf") then
-				--- определяем некущее настроение 
+				--- определяем некущее настроение
 				local temp_player_boredomlevel = player:getBodyDamage():getBoredomLevel();
 				local temp_player_unhappynesslevel = player:getBodyDamage():getUnhappynessLevel();
 				getPlayer():getBodyDamage():setBoredomLevel(temp_player_boredomlevel-1); --- уменьшаем грусть
@@ -199,8 +199,8 @@ end
 --- Выключение CD плеера при пустой батарейки ---
 function PowerOffCDPlayer(item, player, cd_player)
     local player = getPlayer() --игрок
-	
-	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера	
+
+	local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 	local track_position = ICDPCDplayerData.TrackPosition;
 	local num_track = ICDPCDplayerData.NumTrack;
 	local name_track = ICDPCDplayerData.NameTrack;
@@ -208,17 +208,17 @@ function PowerOffCDPlayer(item, player, cd_player)
 	local disc_name = ICDPCDplayerData.DiscName;
 	local artist_name = ICDPCDplayerData.ArtistName;
 	local album_title = ICDPCDplayerData.AlbumTitle;
-	local content_disc = ICDPCDplayerData.ContentDisc; 
+	local content_disc = ICDPCDplayerData.ContentDisc;
 	local entropy_disc = ICDPCDplayerData.EntropyDisc;
-	
+
 	for i = 0, player:getInventory():getItems():size() - 1 do
 
 		local item = player:getInventory():getItems():get(i);
-		
+
 			if item:getType() == "ICDPCDplayerOn" then
 				if not player:HasTrait("Deaf") then
 					player:Say(getText("IGUI_Battery_Power_Off"), 1.0, 0.0, 0.0, UIFont.Dialogue, 30.0, "radio");
-				end	
+				end
 				player:getInventory():Remove("ICDPCDplayerOn");
 			break
 		end
@@ -233,12 +233,12 @@ function PowerOffCDPlayer(item, player, cd_player)
 		if item:getType() == "ICDPCDplayerWithDisc" then
 			item:setUsedDelta(0);
 			cd_player = item
-			
+
 			local ICDPCharacterData = player:getModData() --- получаем ссылку на персонажа
 			local CurrentVolume = ICDPCharacterData.CurrentVolume; -- получаем текущее значение ванильной громкости фоновой музыки
 			getCore():setOptionMusicVolume(CurrentVolume); -- возвращаем ванильную громкость музыки
 
-			local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера	
+			local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 			ICDPCDplayerData.TrackPosition = 1;
 			ICDPCDplayerData.NumTrack = num_track;
 			ICDPCDplayerData.NameTrack = name_track;
@@ -247,7 +247,7 @@ function PowerOffCDPlayer(item, player, cd_player)
 			ICDPCDplayerData.DiscName = disc_name;
 			ICDPCDplayerData.ArtistName = artist_name;
 			ICDPCDplayerData.AlbumTitle = album_title;
-			ICDPCDplayerData.ContentDisc = content_disc; 
+			ICDPCDplayerData.ContentDisc = content_disc;
 			ICDPCDplayerData.EntropyDisc = entropy_disc;
 		end
 	end
@@ -258,13 +258,13 @@ end
 function Stop_CD_Player(item, player, cd_player)
     local player = getPlayer() --игрок
 	local cdplayer_delta
-	
+
 	for i = 0, player:getInventory():getItems():size() - 1 do
-	
+
 		local item = player:getInventory():getItems():get(i);
-		
+
 		if item:getType() == "ICDPCDplayerOn" then
-			
+
 			cdplayer_delta = item:getUsedDelta();
 			player:getInventory():Remove("ICDPCDplayerOn");
 			break
@@ -272,7 +272,7 @@ function Stop_CD_Player(item, player, cd_player)
 	end
 
 	player:getInventory():AddItem("ICDP.ICDPCDplayerWithDisc");
-	
+
 	for i = 0, player:getInventory():getItems():size() - 1 do
 
 		local item = player:getInventory():getItems():get(i);
@@ -281,7 +281,7 @@ function Stop_CD_Player(item, player, cd_player)
 			item:setUsedDelta(cdplayer_delta);
 			cd_player = item
 
-			local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера	
+			local ICDPCDplayerData = cd_player:getModData(); --получаем ссылку на таблицу плеера
 			ICDPCDplayerData.TrackPosition = 1;
 			ICDPCDplayerData.NumTrack = num_track;
 			ICDPCDplayerData.NameTrack = name_track;
@@ -301,24 +301,24 @@ function printCurrentMusicTime(isoPlayer)
 
 	local sound_position = getSoundManager():getMusicPosition()
     print(string.format("Current Music Time Elapsed (ms): %.2f", sound_position))
-    
+
     local totalHours = sound_position / 1000 / 60 / 60
     local totalMinutes = sound_position / 1000 / 60
     local totalSeconds = sound_position / 1000
     print(string.format("Current Music Time Elapsed (hours): %.1f", totalHours))
     print(string.format("Current Music Time Elapsed (minutes): %.1f", totalMinutes))
     print(string.format("Current Music Time Elapsed (seconds): %.1f", totalSeconds))
-    
+
     local totalHoursRounded = math.floor(sound_position / 1000 / 60 / 60)
     local totalMinutesRounded = math.floor(sound_position / 1000 / 60)
     local totalSecondsRounded = math.floor(sound_position / 1000)
     print(string.format("Current Music Time Elapsed (hoursRounded): %.1f", totalHoursRounded))
     print(string.format("Current Music Time Elapsed (minutesRounded): %.1f", totalMinutesRounded))
     print(string.format("Current Music Time Elapsed (secondsRounded): %.1f", totalSecondsRounded))
-    
+
     local music_clock = millisecondsToClock(sound_position)
     print(string.format("Music Clock: %s", music_clock))
-    
+
 end
 
 -- Returns a clock as a String in "hh:mm:ss" format.
@@ -328,7 +328,7 @@ function millisecondsToClock(ms)
     if sec <= 0 then
         return "00:00:00";
 		else
-		
+
         local hours = string.format("%02.f", math.floor(sec/3600));
         local minutes = string.format("%02.f", math.floor(sec/60 - (hours*60)));
         local seconds = string.format("%02.f", math.floor(sec - hours*3600 - minutes*60));
