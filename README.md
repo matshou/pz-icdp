@@ -1,5 +1,9 @@
 # Project Zomboid - Immersive CD Players
 
+<p align="center">
+    <img src="banner.png"
+</p>
+
 This project is an unofficial fork of a [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2268557398) mod created by [Nebula](https://steamcommunity.com/id/nebula-rus).  
 The author has given me permission to host the mod on Github and help develop the mod.
 
