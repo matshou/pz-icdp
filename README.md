@@ -1,6 +1,6 @@
 # Project Zomboid - Immersive CD Players
 
-This project is an unofficial fork of a [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2268557398) mod created by [Nebula](https://steamcommunity.com/id/nebula-rus). 
+This project is an unofficial fork of a [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2268557398) mod created by [Nebula](https://steamcommunity.com/id/nebula-rus).  
 The author has given me permission to host the mod on Github and help develop the mod.
 
 ## Summary
@@ -14,7 +14,7 @@ The mod introduces a playable variation of vanilla CD Players that run on batter
 ### Playable CD's
 
 - Playable CD items are obtained by examining vanilla CD items through the context menu.
-- Note that some CD's found in the world may be *scratched* and thus unreadable by the CD player. 
+- Note that some CD's found in the world may be *scratched* and thus unreadable by the CD player.  
   You can recognize unreadable discs as those that have meta info displayed as "*Unknown*".
 
 ### Battery Powered
