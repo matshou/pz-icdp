@@ -92,7 +92,7 @@ function ISToolTipInv:render()
 							end
 						end
 
-						cache_render_text = (getText("IGUI_Loaded") .. tostring(artist_name)) -- getText("IGUI_") .. localization
+						cache_render_text = (getText("IGUI_Loaded") .. tostring(artist_name))
 						cache_render_text2 = (getText("IGUI_Track") .. tostring(num_track) .. (track_sum))
 					end
 			end
@@ -111,7 +111,7 @@ self.setHeight = function(self, num, ...)
 	if stage == 1 then
 		stage = 2
 		save_th = num
-		num = num + 29 --- высота окна tooltip
+		num = num + 15 --- высота окна tooltip
 
 		else
 			stage = -1 --error
@@ -125,8 +125,8 @@ self.drawRectBorder = function(self, ...)
 		local col; -- {r,g,b}
 		if cache_render_type then
 			local col = TYPE_COLOR[cache_render_type] or TYPE_COLOR.RED_UNKNOWN;
-			self.tooltip:DrawText(UIFont.Small, cache_render_text, 5, save_th-5, col[1], col[2], col[3], 1); --- save_th (высота надписи)
-			self.tooltip:DrawText(UIFont.Small, cache_render_text2, 5, save_th+10, col[1], col[2], col[3], 1);
+--			self.tooltip:DrawText(UIFont.Small, cache_render_text, 5, save_th-5, col[1], col[2], col[3], 1); --- save_th (высота надписи)
+--			self.tooltip:DrawText(UIFont.Small, cache_render_text2, 5, save_th+10, col[1], col[2], col[3], 1);
 		end
 		stage = 3
 
