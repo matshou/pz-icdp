@@ -74,6 +74,10 @@ function CheckCDPlayerOn(item, player) --- проверка наличия в и
 
 	local cd_player
 	local player = getSpecificPlayer(0)
+	
+	if not player then
+	return end
+	
 	local counter_item = player:getInventory():FindAll("ICDPCDplayerOn"); --- получаем количество итемов в инвентаре и (true) в сумках
 
 	local ICDPCharacterData = player:getModData();
