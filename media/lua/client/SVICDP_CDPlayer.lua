@@ -213,6 +213,9 @@ end
 
 function SpendingDelta(items, player) --- Расход энергии ---
 	local player = getSpecificPlayer(0)
+	
+	if not player then
+	return end
 
 	for i = 0, player:getInventory():getItems():size() - 1 do
 
